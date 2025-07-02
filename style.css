@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+      -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -11,6 +12,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    touch-action: manipulation;
+    overflow: hidden;
 }
 #playArea {
   background: linear-gradient(rgb(151, 173, 177), rgb(186, 151, 84), rgb(50, 110, 163));
