@@ -4,14 +4,15 @@ const moveSound = new Audio("move.mp3");
 const foodeatSound = new Audio("foodeat.mp3");
 const gameoverSound = new Audio("gameover.mp3");
 function unlockSounds() {
-  foodeatSound.play().catch(() => {});
-  gameoverSound.play().catch(() => {});
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const buffer = ctx.createBuffer(1, 1, 22050);
+  const source = ctx.createBufferSource();
+  source.buffer = buffer;
+  source.connect(ctx.destination);
+  source.start(0);
   document.removeEventListener('touchstart', unlockSounds);
   document.removeEventListener('click', unlockSounds);
 }
-
-document.addEventListener('touchstart', unlockSounds, { once: true });
-document.addEventListener('click', unlockSounds, { once: true });
 
 let speed = 9;
 let lastPaintTime = 0;
