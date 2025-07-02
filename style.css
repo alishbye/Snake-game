@@ -1,0 +1,153 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: url(bg.jpg);
+    min-height: 100vh;
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#playArea {
+  background: linear-gradient(rgb(151, 173, 177), rgb(186, 151, 84), rgb(50, 110, 163));
+  width: 90vmin;
+  height: 92vmin;
+  display: grid;
+  grid-template-rows: repeat(18, 1fr);
+  grid-template-columns: repeat(18, 1fr);
+  border: 6px solid;
+  border-image: linear-gradient(45deg, black, orange, yellow, black) 1;
+  animation: borderFlow 4s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% {
+    border-image-source: linear-gradient(45deg, black, orange, yellow, black);
+  }
+  50% {
+    border-image-source: linear-gradient(135deg, yellow, black, orange, yellow);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, black, orange, yellow, black);
+  }
+}
+
+
+/* Snake body animation */
+.snake {
+    background-color: rgb(7, 39, 126);
+    animation: pulseSnake 1s infinite ease-in-out;
+    border-radius: 30%;
+}
+
+@keyframes pulseSnake {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Food animation */
+.food {
+    background-color: yellow;
+    animation: floatFood 1.5s infinite ease-in-out;
+    box-shadow: 0 0 10px 3px rgba(255, 255, 0, 0.6);
+    border-radius: 50%;
+}
+
+@keyframes floatFood {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+}
+
+/* Head of the snake glowing */
+.head {
+    background-color: rgb(249, 244, 242);
+    box-shadow: 0 0 10px 2px rgba(131, 125, 125, 0.7);
+    animation: glowHead 1s infinite alternate;
+    border-radius: 40%;
+}
+
+@keyframes glowHead {
+    0% { box-shadow: 0 0 10px 2px rgba(97, 88, 88, 0.5); }
+    100% { box-shadow: 0 0 20px 4px rgba(239, 235, 235, 0.9); }
+}
+
+#scorebox {
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+    font-size: min(2.5vw, 24px); /* Limits maximum font size */
+    font-weight: bold;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.5);
+    
+    /* Ensures text remains readable on small devices */
+    min-width: 80px;
+    text-align: center;
+}
+
+#highscorebox {
+    position: absolute;
+    top: 13vh;
+    right: 4vw;
+    font-size: min(2.5vw, 24px); /* Limits maximum font size */
+    font-weight: bold;
+
+    background-color: rgba(29, 27, 24, 0.8);
+    color: rgb(244, 240, 240);
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(255, 255, 0, 0.5);
+    
+    /* Ensures text remains readable on small devices */
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Tablet devices */
+@media (max-width: 992px) {
+    #scorebox, #highscorebox {
+        font-size: min(3vw, 22px);
+        padding: 0.8vh 1.8vw;
+    }
+}
+
+/* Large mobile devices */
+@media (max-width: 768px) {
+    #scorebox, #highscorebox {
+        font-size: min(4vw, 20px);
+        padding: 0.6vh 1.5vw;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    #scorebox {
+        top: 2vh;
+        right: 2vw;
+        font-size: min(4.5vw, 18px);
+    }
+    
+    #highscorebox {
+        top: 10vh;
+        right: 2vw;
+        font-size: min(4.5vw, 18px);
+    }
+}
+
+/* Very small devices (landscape phones) */
+@media (max-width: 360px) {
+    #scorebox, #highscorebox {
+        font-size: min(5vw, 16px);
+        padding: 0.5vh 1.2vw;
+    }
+}
