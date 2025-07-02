@@ -3,6 +3,17 @@ let inputDir = { x: 0, y: 0 };
 const moveSound = new Audio("move.mp3");
 const foodeatSound = new Audio("foodeat.mp3");
 const gameoverSound = new Audio("gameover.mp3");
+document.addEventListener('touchstart', () => {
+  moveSound.play().catch(() => {});
+  foodeatSound.play().catch(() => {});
+  gameoverSound.play().catch(() => {});
+}, { once: true });
+
+document.addEventListener('click', () => {
+  moveSound.play().catch(() => {});
+  foodeatSound.play().catch(() => {});
+  gameoverSound.play().catch(() => {});
+}, { once: true });
 let speed = 9;
 let lastPaintTime = 0;
 let snakeArr = [{ x: 13, y: 15 }];
